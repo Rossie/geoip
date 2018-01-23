@@ -31,6 +31,7 @@
           <div class="col-md-5">
             <div class="card mb-4 box-shadow">
               <div class="card-body">
+                
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <div class="input-group-text">IP</div>
@@ -42,19 +43,32 @@
                     </button>
                   </div>
                 </div>
-                <div class="card-text" id="looupPanel" style="display: none;">
-                  <pre><code class="json" id="lookupResult"></code></pre>
+
+                <div class="alert alert-danger subscriber iplookup-error iplookup-invoked" id="lookupError" role="alert" style="display:none;"></div>
+
+                <div class="card-text subscriber iplookup-invoked iplookup-data" id="lookupPanel" style="display: none;">
+                  <pre><code class="jsonc subscriber iplookup-data" id="lookupResult"></code></pre>
                 </div>
+
               </div>
             </div>
           </div>
 
           <div class="col-md-7">
             <div class="card mb-4 box-shadow">
-              <div id="map"></div>
+              <div id="map" class="subscriber ipfetched"></div>
             </div>
           </div>
 
+          <div class="col-md-12" id="ipCommentPanel" style="display:none;">
+              <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                  <h5 class="card-title">API description</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+    
           <div class="col-md-12">
             <div class="card mb-4 box-shadow">
               <div class="card-body">
@@ -102,6 +116,7 @@ example.com/api?ip=1.2.3.4&format=json&geo=true</code></pre>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js" integrity="sha256-tTizFdjdqBNNTjhOdrSB4jSoCiSZjbtQBdsUSl+P+PQ="
     crossorigin="anonymous"></script>
   <script src="js/geo-map.js"></script>
+  <script src="js/ip-comments.js"></script>
 </body>
 
 </html>

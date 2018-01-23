@@ -24,19 +24,13 @@
         });
         map.setCenter(marker.getPosition());
     }
-
+    $('#map').on('iplookup.ipfetched', function(evt, ip, result){
+        replaceMarker(result.lat, result.lon);
+    });
     /////////////////////////////////////////////
     // inint highlight.js
     // https://github.com/isagalaev/highlight.js
     /////////////////////////////////////////////
-    $(function () {
-        highlightInit();
-    });
-    function highlightInit() {
-        $('pre code').each(function (i, block) {
-            hljs.highlightBlock(block);
-        });
-    }
 
     /////////////////////////////////////////////
     // IP lookup
@@ -50,27 +44,52 @@
         });
 
         function lookupIp() {
-            var ip = $('#txtIpAddress').val();
+            var ip = $('#txtIpAddress').val(); // get ip from input[text]
             if (!ip) return;
+            $('.subscriber.iplookup-invoked').trigger('iplookup.invoked', [ip]);
 
             $.ajax({
                 dataType: "json",
                 url: '/api?format=json&ip=' + ip,
                 success: function (result) {
-                    $('#lookupResult').html(JSON.stringify(result, null, 2));
-                    highlightInit();
-                    $('#looupPanel').slideDown('slow');
+                    $('.subscriber.iplookup-data').trigger('iplookup.datafetched', [result]);
                     if (result.status == 'success') {
-                        replaceMarker(result.lat, result.lon);
+                        $('.subscriber.ipfetched').trigger('iplookup.ipfetched', [ip, result]);
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.error(errorThrown);
-                    $('#lookupResult').html(errorThrown);
-                    $('#looupPanel').slideDown('slow');
+                    $('.subscriber.iplookup-error').trigger('iplookup.error', [errorThrown]);
                 }
             });
         }
-
     });
+
+    ///////////////////////////////
+    // Result panel
+    ///////////////////////////////    
+    $('#lookupPanel').on('iplookup.invoked', function(evt){
+        $(this).fadeOut('fast');
+    });
+
+    $('#lookupPanel').on('iplookup.datafetched', function(evt, data){
+        var result = $('#lookupResult').html(JSON.stringify(data, null, 2)); // put json string into result panel
+        hljs.highlightBlock(result[0]); // highlight code
+        $(this).delay(0).slideDown('slow');
+    });
+
+    ///////////////////////////////
+    // Error handler
+    ///////////////////////////////
+    $('#lookupError').on('iplookup.error', function(evt, error){
+        console.error(error);
+        $(this).html(error); // display error message
+        $(this).delay(0).slideDown('slow');
+    });
+    
+    $('#lookupError').on('iplookup.invoked', function(evt, error){
+        $(this).fadeOut('fast');
+    });
+
+
 })();
