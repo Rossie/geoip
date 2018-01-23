@@ -8,7 +8,7 @@
     /////////////////////////////////////////////
     var mapInitDefault = {
         zoom: 5,
-        center: {lat: 47.5833, lng: 18.9333} // ~ near Budapest
+        center: { lat: 47.5833, lng: 18.9333 } // ~ near Budapest
     };
     var marker; // the only one marker on the map
     var map; // map instance
@@ -19,7 +19,7 @@
     function replaceMarker(lat, lng) {
         if (marker) marker.setMap(null); // remove old marker
         marker = new google.maps.Marker({
-            position: {lat:lat, lng:lng},
+            position: { lat: lat, lng: lng },
             map: map
         });
         map.setCenter(marker.getPosition());
@@ -37,34 +37,34 @@
             hljs.highlightBlock(block);
         });
     }
-    
+
     /////////////////////////////////////////////
     // IP lookup
     /////////////////////////////////////////////
 
-    $(function(){
+    $(function () {
         if (testing) $('#txtIpAddress').val('31.46.203.115');
 
-        $('#btnLookup').click(function(){
+        $('#btnLookup').click(function () {
             lookupIp();
         });
 
-        function lookupIp(){
+        function lookupIp() {
             var ip = $('#txtIpAddress').val();
             if (!ip) return;
 
             $.ajax({
                 dataType: "json",
-                url: '/api?format=json&ip='+ip,
-                success: function(result){
+                url: '/api?format=json&ip=' + ip,
+                success: function (result) {
                     $('#lookupResult').html(JSON.stringify(result, null, 2));
                     highlightInit();
                     $('#looupPanel').slideDown('slow');
-                    if (result.status == 'success'){
+                    if (result.status == 'success') {
                         replaceMarker(result.lat, result.lon);
                     }
                 },
-                error: function( jqXHR, textStatus, errorThrown ) {
+                error: function (jqXHR, textStatus, errorThrown) {
                     console.error(errorThrown);
                     $('#lookupResult').html(errorThrown);
                     $('#looupPanel').slideDown('slow');
