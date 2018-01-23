@@ -1,75 +1,120 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- <link rel="icon" href=""> -->
 
-    <title>IP Query and Geolocation</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- <link rel="icon" href=""> -->
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+  <title>IP Query and Geolocation</title>
 
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
-  </head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" integrity="sha256-Zd1icfZ72UBmsId/mUcagrmN7IN5Qkrvh75ICHIQVTk="
+    crossorigin="anonymous" />
+  <link href="css/style.css" rel="stylesheet">
+</head>
 
-  <body>
+<body>
 
-    <main role="main">
+  <main role="main">
 
-      <div class="album py-5 bg-light">
-        <div class="container">
+    <div class="album py-5 bg-light">
+      <div class="container">
 
-          <div class="row">
-            
-            <div class="col-md-5">
-              <div class="card mb-4 box-shadow">
-                <div class="card-body">
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">IP</div>
-                    </div>
-                    <input type="text" class="form-control" id="ip_address" placeholder="IP Address"/>
-                    <div class="input-group-append">
-                      <button class="btn" type="button"><i class="fa fa-lg fa-search"></i></button>
-                    </div>
+        <div class="row">
+
+          <div class="col-md-5">
+            <div class="card mb-4 box-shadow">
+              <div class="card-body">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">IP</div>
                   </div>
-                  <p class="card-text"><code>This is a wider card with supporting text below as a natural lead-in to additional content. 
-                    This content is a little bit longer.</code></p>
+                  <input type="text" class="form-control" id="ip_address" placeholder="IP Address" />
+                  <div class="input-group-append">
+                    <button class="btn" type="button">
+                      <i class="fa fa-lg fa-search"></i>
+                    </button>
+                  </div>
                 </div>
+                <p class="card-text">
+                  <pre><code class="json">{
+  "as":"AS5483 Magyar Telekom plc.",
+  "city":"Solymar",
+  "country":"Hungary",
+  "countryCode":"HU",
+  "isp":"Magyar Telekom",
+  "lat":47.5833,
+  "lon":18.9333,
+  "org":"Magyar Telekom",
+  "query":"31.46.203.115",
+  "region":"PE",
+  "regionName":"Pest megye",
+  "status":"success",
+  "timezone":"Europe/Budapest",
+  "zip":"2083"
+}</code></pre>
+                </p>
               </div>
             </div>
-
-            <div class="col-md-7">
-              <div class="card mb-4 box-shadow">
-                <div id="map"></div>
-              </div>
-            </div>
-
           </div>
+
+          <div class="col-md-7">
+            <div class="card mb-4 box-shadow">
+              <div id="map"></div>
+            </div>
+          </div>
+          
+          <div class="col-md-12">
+            <div class="card mb-4 box-shadow">
+              <div class="card-body">
+                <h5 class="card-title">API description</h5>
+                <div class="card-text">
+<pre><code>example.com/api?format=json (just prints the user’s IP)
+example.com/api?format=json&geo=true (print detailed geo data of the user’s IP)
+Or, to get the details of another IP:
+example.com/api?ip=1.2.3.4&format=json
+example.com/api?ip=1.2.3.4&format=json&geo=true</code></pre>
+                </div>  
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
+    </div>
 
-    </main>
+  </main>
 
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-right">
-          <a href="#">Back to top</a>
-        </p>
-      </div>
-    </footer>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Back to top</a>
+      </p>
+    </div>
+  </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
-    <!-- <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js" integrity="sha256-pS96pU17yq+gVu4KBQJi38VpSuKN7otMrDQprzf/DWY=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha256-5+02zu5UULQkO7w1GIr6vftCgMfFdZcAHeDtFnKZsBs=" crossorigin="anonymous"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOXFJyuHI9JnQyGh-rL4vcEWmra13ldMg&callback=initMap"></script>
-    <script src="js/geo-map.js"></script>
-  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+    crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+  <!-- <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js" integrity="sha256-pS96pU17yq+gVu4KBQJi38VpSuKN7otMrDQprzf/DWY="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha256-5+02zu5UULQkO7w1GIr6vftCgMfFdZcAHeDtFnKZsBs="
+    crossorigin="anonymous"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOXFJyuHI9JnQyGh-rL4vcEWmra13ldMg&callback=initMap"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js" integrity="sha256-KPdGtw3AdDen/v6+9ue/V3m+9C2lpNiuirroLsHrJZM="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js" integrity="sha256-tTizFdjdqBNNTjhOdrSB4jSoCiSZjbtQBdsUSl+P+PQ="
+    crossorigin="anonymous"></script>
+  <script src="js/geo-map.js"></script>
+</body>
+
 </html>
