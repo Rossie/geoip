@@ -1,4 +1,4 @@
-const url = 'http://ip-api.com';
+const url = 'http://ip-api.com'; // http://ip-api.com/docs/
 const http = require('http');
 
 const ipApi = {
@@ -8,7 +8,7 @@ const ipApi = {
             // code from here:
             // https://nodejs.org/dist/latest-v8.x/docs/api/http.html#http_http_get_options_callback
             const uri = url + `/${format}/${ip}`;
-            console.log('uri', uri);
+
             http.get(uri, (res) => {
                 const { statusCode } = res;
                 const contentType = res.headers['content-type'];
@@ -30,13 +30,9 @@ const ipApi = {
                 let rawData = '';
                 res.on('data', (chunk) => { rawData += chunk; });
                 res.on('end', () => {
-                    try {
-                        resolve(rawData);
-                        // const parsedData = JSON.parse(rawData);
-                        // resolve(parsedData);
-                    } catch (e) {
-                        reject(e.message);
-                    }
+                    resolve(rawData);
+                    // const parsedData = JSON.parse(rawData); // parse later outside
+                    // resolve(parsedData);
                 });
             }).on('error', (e) => {
                 reject(`Got error: ${e.message}`);

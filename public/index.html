@@ -35,31 +35,16 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text">IP</div>
                   </div>
-                  <input type="text" class="form-control" id="ip_address" placeholder="IP Address" />
+                  <input type="text" class="form-control" id="txtIpAddress" placeholder="IP Address" />
                   <div class="input-group-append">
-                    <button class="btn" type="button">
+                    <button class="btn" type="button" id="btnLookup">
                       <i class="fa fa-lg fa-search"></i>
                     </button>
                   </div>
                 </div>
-                <p class="card-text">
-                  <pre><code class="json">{
-  "as":"AS5483 Magyar Telekom plc.",
-  "city":"Solymar",
-  "country":"Hungary",
-  "countryCode":"HU",
-  "isp":"Magyar Telekom",
-  "lat":47.5833,
-  "lon":18.9333,
-  "org":"Magyar Telekom",
-  "query":"31.46.203.115",
-  "region":"PE",
-  "regionName":"Pest megye",
-  "status":"success",
-  "timezone":"Europe/Budapest",
-  "zip":"2083"
-}</code></pre>
-                </p>
+                <div class="card-text" id="looupPanel" style="display: none;">
+                  <pre><code class="json" id="lookupResult"></code></pre>
+                </div>
               </div>
             </div>
           </div>
@@ -69,18 +54,18 @@
               <div id="map"></div>
             </div>
           </div>
-          
+
           <div class="col-md-12">
             <div class="card mb-4 box-shadow">
               <div class="card-body">
                 <h5 class="card-title">API description</h5>
                 <div class="card-text">
-<pre><code>example.com/api?format=json (just prints the user’s IP)
+                  <pre><code>example.com/api?format=json (just prints the user’s IP)
 example.com/api?format=json&geo=true (print detailed geo data of the user’s IP)
 Or, to get the details of another IP:
 example.com/api?ip=1.2.3.4&format=json
 example.com/api?ip=1.2.3.4&format=json&geo=true</code></pre>
-                </div>  
+                </div>
               </div>
             </div>
           </div>
@@ -99,8 +84,10 @@ example.com/api?ip=1.2.3.4&format=json&geo=true</code></pre>
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+    crossorigin="anonymous"></script> -->
   <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
   <!-- <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js" integrity="sha256-pS96pU17yq+gVu4KBQJi38VpSuKN7otMrDQprzf/DWY="
