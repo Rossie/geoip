@@ -17,7 +17,7 @@
     };
 
     function replaceMarker(lat, lng) {
-        marker && marker.setMap(null); // remove old marker
+        if (marker) marker.setMap(null); // remove old marker
         marker = new google.maps.Marker({
             position: {lat:lat, lng:lng},
             map: map
@@ -56,20 +56,18 @@
             $.ajax({
                 dataType: "json",
                 url: '/api?format=json&ip='+ip,
-                // data: data,
                 success: function(result){
-                    // console.log('success', result);
-                    // if (result.status != 'success')
                     $('#lookupResult').html(JSON.stringify(result, null, 2));
                     highlightInit();
                     $('#looupPanel').slideDown('slow');
                     if (result.status == 'success'){
                         replaceMarker(result.lat, result.lon);
                     }
-                    
                 },
                 error: function( jqXHR, textStatus, errorThrown ) {
                     console.error(errorThrown);
+                    $('#lookupResult').html(errorThrown);
+                    $('#looupPanel').slideDown('slow');
                 }
             });
         }
