@@ -11,7 +11,18 @@
     /////////////////////////////////////////////
 
     $(function () {
-        if (testing) $('#txtIpAddress').val('31.46.203.115');
+        // if (testing) $('#txtIpAddress').val('31.46.203.115');
+
+        /////////////////////////////////////////////
+        // Parse path
+        /////////////////////////////////////////////
+        var query = window.location.pathname.split('/');
+        var urlIp;
+        if (query.length >= 3) {
+            urlIp = query[2];
+            $('#txtIpAddress').val(urlIp);
+            lookupIp();
+        }
 
         $('#btnLookup').click(function () {
             lookupIp();
