@@ -8,19 +8,22 @@ $(function () {
     $(document).on('iplookup.ipfetched', function (evt, ip, result) {
         $('#comments_title_ip').html(ip);
         _ip = ip;
-        //fetch comments from server (ajax)
+
         fetchComments();
-        //TODO: show comments sections
-        //TODO: saving and display new comment (ajax)
     });
 
     function fetchComments() {
         $('.subscriber.comment-invoked').trigger('comment.invoked');
         $.ajax({
             dataType: "json",
-            url: '/comment-api/'+_ip,
+            url: '/comment-api/' + _ip,
             success: function (result) {
-                $('.subscriber.comment-data').trigger('comment.data', [result]);
+                if (result.result == "ok") {
+                    $('.subscriber.comment-data').trigger('comment.data', [result.comments]);
+                }
+                else {
+                    $('.subscriber.comment-error').trigger('comment.error', [result.message]);
+                }
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error(errorThrown);
@@ -28,22 +31,27 @@ $(function () {
         });
     }
 
-    $('#btnCommentPost').click(function(evt){
+    $('#btnCommentPost').click(function (evt) {
         var comment = $('#txtComment').val().trim();
         if (!comment) return;
 
         postComment(comment);
     });
 
-    function postComment(comment){
+    function postComment(comment) {
         $('.subscriber.comment-post-invoked').trigger('comment.post-invoked');
         $.ajax({
             dataType: "json",
             method: "POST",
-            data: {comment: comment},
-            url: '/comment-api/'+_ip,
+            data: { comment: comment },
+            url: '/comment-api/' + _ip,
             success: function (result) {
-                $('.subscriber.comment-post').trigger('comment.post', [result]);
+                if (result.result == "ok") {
+                    $('.subscriber.comment-post').trigger('comment.post', [result.comment]);
+                }
+                else {
+                    $('.subscriber.comment-error').trigger('comment.error', [result.message]);
+                }
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error(errorThrown);
@@ -54,25 +62,45 @@ $(function () {
     //////////////////////////////
     // Comment list
     //////////////////////////////
-    $('#commentList').on('comment.invoked', function(evt){
+    $('#commentList').on('comment.invoked', function (evt) {
         $('#comment_panel').fadeOut('fast');
     })
-    .on('comment.data', function(evt, result){
-        
-        $('#comment_panel').delay(0).slideDown();
-    });
-    
+        .on('comment.data', function (evt, result) {
+            var qCommentList = $(this);
+            qCommentList.empty(); // remove all contents
+
+            result.forEach(function (comment) {
+                qCommentList.append(
+                    '<li class="list-group-item">' +
+                    '<h6 class="text-muted">' + comment.post_date + '</h6>' +
+                    '<p>' + comment.comment + '</p>' +
+                    '</li>'
+                );
+            });
+
+            $('#comment_panel').delay(0).slideDown();
+        })
+        .on('comment.post', function (evt, comment) {
+            // console.log('comment.post', result);
+            $(this).append(
+                '<li class="list-group-item">' +
+                '<h6 class="text-muted">' + comment.post_date + '</h6>' +
+                '<p>' + comment.comment + '</p>' +
+                '</li>'
+            );
+        });
+
     //////////////////////////////
     // Comment POST form
     //////////////////////////////
-    $('#commentForm').on('comment.post-invoked', function(evt){
+    $('#commentForm').on('comment.post-invoked', function (evt) {
         $('#commentForm textarea, #commentForm button').prop('disabled', true);
     })
-    .on('comment.post', function(evt, result){
-        $('#commentForm textarea, #commentForm button').prop('disabled', false);
-        if (result.result == 'ok') {
-            $('#txtComment').val(''); // empty textarea
-        }
-    });
+        .on('comment.post', function (evt, comment) {
+            $('#commentForm textarea, #commentForm button').prop('disabled', false);
+            if (comment.id) {
+                $('#txtComment').val(''); // empty textarea
+            }
+        });
 
 }); 
