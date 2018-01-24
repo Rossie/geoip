@@ -4,7 +4,7 @@ const orm = require("orm");
 // Database credentials, settings
 // https://github.com/dresende/node-orm2/wiki
 ///////////////////////////////////
-const username = 'root';
+const username = 'ipweb';
 const password = '1234';
 const host = 'localhost';
 const dbname = 'ip_geo';
@@ -86,8 +86,6 @@ const dbFunctions = {
                 
                 _Comments.find({ip_id: ipItem.id}, (err, comments) => {
                     if (err) { throw err; }
-            
-                    console.log('comments', comments);
                     resolve(comments);
                 });
             })
@@ -109,7 +107,7 @@ const dbFunctions = {
                     post_date: new Date(),
                     comment: comment
                 }, (err, result) => {
-                    if (err) { throw err; };
+                    if (err) { throw err; }
                     resolve(result);
                 });
             })
