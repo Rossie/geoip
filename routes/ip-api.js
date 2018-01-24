@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const ipApi = require('../services/ip-api');
+const db = require('../services/database');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -15,10 +16,14 @@ router.get('/', function (req, res, next) {
         .then(result => {
             if (format == 'csv') format = 'text'; // translate csv back to text
             res.type(format).send(result);
+
+            return db.addIp(ip, result); // save ip address
         })
         .catch(error => {
-            console.error(error);
-            res.send(error);
+            if (error.code != 'ER_DUP_ENTRY') { // duplicaton is ok for IP addresses
+                console.error(error);
+                res.json({ result: 'error', message: error });
+            }
         });
 });
 
