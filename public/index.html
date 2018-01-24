@@ -67,38 +67,38 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-12" id="comment_panel" style="display: none;">
-          <div class="card mb-4 box-shadow">
-            <div class="card-body">
-              <h5 class="card-title"><i class="fa fa-fw fa-comment text-muted"></i> Comments on IP: <span id="comments_title_ip"></span></h5>
-              <div class="card-text">
-                <ul class="list-group">
-                  <li class="list-group-item">
-                    <h6 class="text-muted">Comment 1 Title</h6>
-                    <p>Text 1 content</p>
-                  </li>
-                  <li class="list-group-item">
-                    Comment 2
-                  </li>
-                  <form class="mt-3" id="commentForm">
-                    <h6>Post New Comment</h6>
-                    <div class="form-group">
-                      <textarea class="form-control" id="txtComment" rows="3"></textarea>
-                    </div>
-                    <div class="text-center">
-                      <button type="button" id="btnCommentPost" class="btn btn-primary mx-auto"><i class="fa fa-fw fa-paper-plane"></i> Save</button>
-                    </div>
-                  </form>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+          <div class="col-md-12" id="comment_panel" style="display: none;">
+              <div class="card mb-4 box-shadow">
+                <div class="card-body">
 
+                  <h5 class="card-title"><i class="fa fa-fw fa-comment text-muted"></i> Comments on IP: <span id="comments_title_ip"></span></h5>
+                  
+                  <div class="card-text">
+                    <ul class="list-group subscriber comment-data comment-invoked" id="commentList">
+                      <li class="list-group-item">
+                        <h6 class="text-muted">Comment 1 Title</h6>
+                        <p>Text 1 content</p>
+                      </li>
+                    </ul>
+                    <form class="mt-3 subscriber comment-post-invoked comment-post" id="commentForm">
+                      <h6>Post New Comment</h6>
+                      <div class="form-group">
+                        <textarea class="form-control" id="txtComment" rows="3"></textarea>
+                      </div>
+                      <div class="text-center">
+                        <button type="button" id="btnCommentPost" class="btn btn-primary mx-auto"><i class="fa fa-fw fa-paper-plane"></i> Save</button>
+                      </div>
+                    </form>
+                  </div>
 
-        <div class="col-md-12">
+                </div><!-- .card-body -->
+              </div><!-- .card -->
+            </div><!-- #comment_panel -->
+                  
+        </div><!-- .row -->
+          
+        <div class="col-md-12" id="apiPanel">
           <div class="card mb-4 box-shadow">
             <div class="card-body">
               <h5 class="card-title"><i class="fa fa-fw fa-cog text-muted"></i> API description</h5>
@@ -111,7 +111,7 @@ example.com/api?ip=1.2.3.4&format=json&geo=true</code></pre>
               </div>
             </div>
           </div>
-        </div>
+        </div><!-- #apiPanel -->
 
       </div>
     </div>
@@ -149,4 +149,3 @@ example.com/api?ip=1.2.3.4&format=json&geo=true</code></pre>
   <script src="js/ip-comments.js"></script>
 </body>
 </body>
-lookuphtml>
