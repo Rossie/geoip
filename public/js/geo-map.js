@@ -24,7 +24,7 @@
         map.setCenter(marker.getPosition());
     }
 
-    $('#map').on('iplookup.ipfetched', function(evt, ip, result){
+    $('#map').on('iplookup.ipfetched', function (evt, ip, result) {
         replaceMarker(result.lat, result.lon);
     });
 

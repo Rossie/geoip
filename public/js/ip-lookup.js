@@ -42,11 +42,11 @@
     ///////////////////////////////
     // Result panel
     ///////////////////////////////    
-    $('#lookupPanel').on('iplookup.invoked', function(evt){
+    $('#lookupPanel').on('iplookup.invoked', function (evt) {
         $(this).fadeOut('fast');
     });
 
-    $('#lookupPanel').on('iplookup.datafetched', function(evt, data){
+    $('#lookupPanel').on('iplookup.datafetched', function (evt, data) {
         var result = $('#lookupResult').html(JSON.stringify(data, null, 2)); // put json string into result panel
         hljs.highlightBlock(result[0]); // highlight code
         $(this).delay(0).slideDown('slow');
@@ -55,13 +55,13 @@
     ///////////////////////////////
     // Error handler
     ///////////////////////////////
-    $('#lookupError').on('iplookup.error', function(evt, error){
+    $('#lookupError').on('iplookup.error', function (evt, error) {
         console.error(error);
         $(this).html(error); // display error message
         $(this).delay(0).slideDown('slow');
     });
-    
-    $('#lookupError').on('iplookup.invoked', function(evt, error){
+
+    $('#lookupError').on('iplookup.invoked', function (evt, error) {
         $(this).fadeOut('fast');
     });
 
