@@ -13,6 +13,9 @@
     var map; // map instance
     window.initMap = function () {
         map = new google.maps.Map(document.getElementById('map'), mapInitDefault);
+        if (mapLat && mapLng) {
+            replaceMarker(mapLat, mapLng);
+        }
     };
 
     function replaceMarker(lat, lng) {

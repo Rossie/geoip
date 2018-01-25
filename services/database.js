@@ -69,8 +69,18 @@ const dbFunctions = {
     getIp: function(ip) {
         return new Promise((resolve, reject) => {
             _Ip.one({ ip: ip }, (err, ipItem) => {
-                if (err) { reject(err); }
-                resolve(ipItem);
+                if (err) { throw err; }
+
+                if (ipItem) {
+                    _Comments.find({ip_id: ipItem.id}, (err, comments) => {
+                        if (err) { throw err; }
+                        ipItem.comments = comments;
+                        resolve(ipItem);
+                    });
+                }
+                else {
+                    resolve(null);
+                }
             });
         });
     },
@@ -93,6 +103,15 @@ const dbFunctions = {
         });
     },
 
+    getIpCommentsById: function (id) {
+        return new Promise((resolve, reject) => {
+            _Comments.find({ip_id: id}, (err, comments) => {
+                if (err) { throw err; }
+                resolve(comments);
+            });
+        });
+    },
+            
     addIpComments: function(ip, comment) {
         return new Promise((resolve, reject) => {
             dbFunctions.getIp(ip)

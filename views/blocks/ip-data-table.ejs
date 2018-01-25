@@ -1,0 +1,16 @@
+<table class="table mb-0 mt-3">
+  <tbody>
+    <% Object.keys(ipdata).forEach(function (key) { %>
+      <% if (ipdata[key]) { %>
+        <tr>
+          <th class="py-1 text-muted">
+            <%= key %>
+          </th>
+          <td class="py-1">
+            <%= ipdata[key] %>
+          </td>
+        <tr>
+      <% } %>
+    <% }); %>
+  </tbody>
+</table>

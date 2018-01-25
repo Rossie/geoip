@@ -1,7 +1,7 @@
 $(function () {
     // https://stackoverflow.com/questions/399867/custom-events-in-jquery     
 
-    var _ip;
+    var _ip = window.viewIp;
     ///////////////////////////////////////////////////
     // Comments for the IP address
     ///////////////////////////////////////////////////
