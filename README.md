@@ -32,3 +32,7 @@ pm2
     $ npm install pm2 -g
     Run server
         $ pm2 start ./bin/www
+
+ORM doesn't create index so have to add it manually after tables are created:
+    mysql> ALTER TABLE `comments` ADD INDEX `ip_id` (`ip_id` ASC);
+
