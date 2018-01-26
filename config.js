@@ -1,5 +1,6 @@
 var config = {
     SITE_NAME: "ipzen.io",
+    SITE_TITLE: "IP Query and Geolocation",
 
     ///////////////////////////////////
     // Database credentials, settings
