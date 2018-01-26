@@ -11,6 +11,7 @@ var api = require('./routes/api');
 var commentApi = require('./routes/comment-api');
 var contact = require('./routes/contact');
 var about = require('./routes/about');
+var privacy = require('./routes/privacy');
 var config = require('./config');
 
 var app = express();
@@ -34,6 +35,7 @@ app.use('/api', api);
 app.use('/comment-api', commentApi);
 app.use('/contact', contact);
 app.use('/about', about);
+app.use('/privacy', privacy);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
