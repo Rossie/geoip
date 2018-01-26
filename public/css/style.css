@@ -11,3 +11,19 @@ a {
   width: 100%;
   height: 400px;
 }
+
+.navbar a {
+  color: #ffd753;  
+}
+
+.navbar a:hover {
+  color: rgb(255, 255, 255);
+}
+
+.footer .bg-secondary,
+.footer .bg-secondary a {
+  color: rgb(216, 216, 216);
+}
+.footer .bg-secondary a:hover {
+  color: rgb(255, 255, 255);
+}
