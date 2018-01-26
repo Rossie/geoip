@@ -10,6 +10,7 @@ var ipView = require('./routes/ip-view');
 var api = require('./routes/api');
 var commentApi = require('./routes/comment-api');
 var contact = require('./routes/contact');
+var about = require('./routes/about');
 var config = require('./config');
 
 var app = express();
@@ -32,6 +33,7 @@ app.use('/ips', ipView);
 app.use('/api', api);
 app.use('/comment-api', commentApi);
 app.use('/contact', contact);
+app.use('/about', about);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
