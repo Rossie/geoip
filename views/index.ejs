@@ -5,8 +5,8 @@
     window.viewIp = '<%- data.ip %>';
     <% } %>
     <% if (data.data) { %>
-      window.mapLat = <%- data.data.lat %>;
-      window.mapLng = <%- data.data.lon %>;
+      window.mapLat = <%- data.data.lat || 'false' %>;
+      window.mapLng = <%- data.data.lon || 'false' %>;
     <% } %>
   </script>
 
@@ -23,19 +23,7 @@
             <div class="card mb-4 box-shadow">
               <div class="card-body">
 
-                <form method="POST">
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">IP</div>
-                    </div>
-                    <input type="text" name="ip" class="form-control" id="txtIpAddress" placeholder="IP Address" value="<%= data.ip %>" />
-                    <div class="input-group-append">
-                      <button class="btn" type="submit" >
-                        <i class="fa fa-lg fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
+                <%- include('blocks/search', {data: data}) %>
 
                 <div class="alert alert-danger subscriber iplookup-error iplookup-invoked" id="lookupError" role="alert" style="display:none;"></div>
 
