@@ -17,9 +17,17 @@ orm.connectAsync(`mysql://${config.username}:${config.password}@${config.host}/$
             id: { type: 'serial', key: true },
             ip: { type: "text", size: 20, required: true, unique: true },
             data: { type: "object" },
-            post_date: { type: "date", time: true, required: true }
+            post_date: { type: "date", time: true, required: true },
+            last_crawled_epoch: { type: "integer" },
+        }, {
+            hooks: {
+                beforeSave: function (next) {
+                    this.last_crawled_epoch = ~~((new Date()).getTime() / 1000);
+                    return next();
+                }
+            }
         });
-
+         
         _Comments = db.define("comments", {
             id: { type: 'serial', key: true },
             ip_id: { type: "integer", index: true }, // TODO: it doesn't create the index!!!
