@@ -4,17 +4,12 @@ const orm = require("orm");
 // Database credentials, settings
 // https://github.com/dresende/node-orm2/wiki
 ///////////////////////////////////
-const username = 'ipweb';
-const password = '1234';
-const host = 'localhost';
-const dbname = 'ip_geo';
-const debug = 'true';
-///////////////////////////////////
+const config = require('../config');
 
 var _db;
 var _Ip;
 var _Comments;
-orm.connectAsync(`mysql://${username}:${password}@${host}/${dbname}?debug=${debug}`)
+orm.connectAsync(`mysql://${config.username}:${config.password}@${config.host}/${config.dbname}?debug=${config.debug}`)
     .then(db => {
         _db = db;
 

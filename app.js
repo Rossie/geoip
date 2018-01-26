@@ -9,8 +9,10 @@ var index = require('./routes/index');
 var ipView = require('./routes/ip-view');
 var ipApi = require('./routes/ip-api');
 var commentApi = require('./routes/comment-api');
+var config = require('./config');
 
 var app = express();
+app.locals.config = config; // makes accessible in templates
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
