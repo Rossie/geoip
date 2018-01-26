@@ -1,3 +1,49 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<%- include('header-html'); %>
+
+<%- include('blocks/navbar'); %>
+
+<main role="main">
+
+  <div class="ipgeo py-5 bg-light">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-6 offset-3">
+          <div class="card mb-4 box-shadow">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fa fa-fw fa-chain-broken text-muted"></i> Error happened</h5>
+
+                <h1><%= message %></h1>
+                <h2><%= error.status %></h2>
+
+                <button type="button" id="btnDetails" class="btn btn-link">Details</button>
+                <pre id="details" style="display:none"><%= error.stack %></pre>
+                
+            </div>
+          </div>
+        </div>
+        <!-- #apiPanel -->
+
+      </div>
+      <!-- .row -->
+
+    </div>
+    <!-- .container -->
+  </div>
+  <!-- .ipgeo -->
+
+</main>
+
+<%- include('blocks/footer'); %>
+
+<%- include('footer-html', {data: {}}); %>
+
+<script>
+    $(function(){
+        $('#btnDetails').click(function(){
+            $('#details').slideToggle();
+        });
+    });
+</script>
