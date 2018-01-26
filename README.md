@@ -5,6 +5,8 @@ Create Debian user for Node server
     $ useradd ipweb
     $ passwd ipweb
     $ mkhomedir_helper ipweb
+    https://stackoverflow.com/questions/16573668/best-practices-when-running-node-js-with-port-80-ubuntu-linode
+    $ sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
 
 MySql
     $ apt-get install mysql-server

@@ -15,7 +15,7 @@ orm.connectAsync(`mysql://${config.username}:${config.password}@${config.host}/$
 
         _Ip = db.define("ip", {
             id: { type: 'serial', key: true },
-            ip: { type: "text", size: 20, required: true, unique: true },
+            ip: { type: "text", size: 40, required: true, unique: true },
             data: { type: "object" },
             post_date: { type: "date", time: true, required: true },
             last_crawled_epoch: { type: "integer" },
