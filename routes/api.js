@@ -35,34 +35,35 @@ router.get('/', function (req, res, next) {
                         ipJson = JSON.parse(ipString);
                         resolve(ipJson);
                     }
-                }).then((ipJson) => {
-                    if (ipJson.status != "success") {
-                        res.status(400); // set Bad Request
-                    }
-
-                    if (!geo && ipJson.status == "success") {
-                        switch (format) {
-                            case 'json':
-                                ipString = `{"ip": ${ipJson.query}}`;
-                                break;
-                            case 'xml':
-                                ipString = '<?xml version="1.0" encoding="UTF-8"?>' +
-                                    '<query>' +
-                                    `<query><![CDATA[${ipJson.query}]]></query>` +
-                                    '</query>';
-                                break;
-                            case 'text':
-                                ipString = ipJson.query;
-                                break;
-                        }
-                    }
-
-                    res.type(format).send(ipString); // send result data with format  <--- SEND
-
-                    if (ipJson.status == "success") {
-                        return db.addIp(ip, ipJson); // save ip data to DB
-                    }
                 })
+                    .then((ipJson) => {
+                        if (ipJson.status != "success") {
+                            res.status(400); // set Bad Request
+                        }
+
+                        if (!geo && ipJson.status == "success") {
+                            switch (format) {
+                                case 'json':
+                                    ipString = `{"ip": ${ipJson.query}}`;
+                                    break;
+                                case 'xml':
+                                    ipString = '<?xml version="1.0" encoding="UTF-8"?>' +
+                                        '<query>' +
+                                        `<query><![CDATA[${ipJson.query}]]></query>` +
+                                        '</query>';
+                                    break;
+                                case 'text':
+                                    ipString = ipJson.query;
+                                    break;
+                            }
+                        }
+
+                        res.type(format).send(ipString); // send result data with format  <--- SEND
+
+                        if (ipJson.status == "success") {
+                            return db.addIp(ip, ipJson); // save ip data to DB
+                        }
+                    })
                     .catch(error => {
                         if (error.code != 'ER_DUP_ENTRY') { // duplicaton is ok for IP addresses
                             console.error(error);
