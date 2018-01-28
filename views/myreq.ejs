@@ -1,0 +1,50 @@
+<%- include('header-html'); %>
+
+<%- include('blocks/navbar'); %>
+
+<main role="main">
+
+  <div class="py-5 bg-light">
+    <div class="container">
+
+      <div class="row">
+  
+        <div class="col-md-12">
+          <div class="card mb-4 box-shadow">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fa fa-fw fa-map-signs text-muted"></i> My Request Headers</h5>
+
+                <table class="table table-sm request-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% data.reqests.forEach(item => { %>
+                    <tr>
+                      <td scope="row" class="text-muted"><%= item.key %></td>
+                      <td><%= item.value %></td>
+                    </tr>
+                    <% }) %>
+                  </tbody>
+                </table>
+
+            </div>
+          </div>
+        </div>
+        <!-- #apiPanel -->
+      </div>
+      <!-- .row -->
+
+    </div>
+    <!-- .bg-light -->
+  </div>
+  <!-- .ipgeo -->
+
+</main>
+    
+<%- include('blocks/footer'); %>
+
+<%- include('footer-html', {data: {}}); %>

@@ -1,16 +1,9 @@
-/* body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-} */
-
 #map {
   width: 100%;
   height: 400px;
 }
+
+/* Bootstrap overrides */
 
 .navbar a {
   color: #ffd753 !important;  
@@ -30,4 +23,16 @@ a {
 }
 .footer .bg-secondary a:hover {
   color: rgb(255, 255, 255);
+}
+
+/* myreq */
+
+.request-table th {
+  border-top: none;
+}
+
+.request-table th:first-child,
+.request-table td:first-child {
+  text-align: right;
+  font-weight: bold;
 }
