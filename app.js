@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var template = require('./middlewares/template');
+var template_helpers = require('./middlewares/template_helpers');
 
 var index = require('./routes/index');
 var ipView = require('./routes/ip-view');
@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(template); // setting up template functions/variables
+app.use(template_helpers); // setting up template functions/variables
 
 app.use('/', index);
 app.use('/ips', ipView);
