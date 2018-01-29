@@ -28,7 +28,8 @@ var config = {
         // https://nodemailer.com/message/
         messageDefaults: {
             from: 'support@ipzen.io',
-            to: 'rossie.g@gmail.com'
+            to: 'rossie
+            .g@gmail.com'
         }
     },
 
@@ -37,7 +38,7 @@ var config = {
     ///////////////////////////////////
     contactus: {
         banCount: 1, // permits sending message after this count of messages
-        clearTimeout: 60*1*1000 // permits sendig messages for this time of milliseconds
+        clearTimeout: 60 * 30 * 1000 // permits sendig messages for this time of milliseconds
     },
 };
 
