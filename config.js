@@ -36,7 +36,7 @@ var config = {
     // Contact Us
     ///////////////////////////////////
     contactus: {
-        banCount: 1, // permits sending message after this count of messages
+        banCount: 3, // permits sending message after this count of messages
         clearTimeout: 60 * 30 * 1000 // permits sendig messages for this time of milliseconds
     },
 };
