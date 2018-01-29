@@ -28,7 +28,7 @@ var config = {
         // https://nodemailer.com/message/
         messageDefaults: {
             from: 'support@ipzen.io',
-            to: 'rossie.g@gmail.com'
+            to: 'support@ipzen.io'
         }
     },
 
