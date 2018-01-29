@@ -1,15 +1,6 @@
 const config = require('../config');
 const nodemailer = require('nodemailer');
 
-/* 
-- In the contact page, please use this smtp:
-support@ipzen.io
-pass: e4a18970ef3ccf9d
-That is, when someone fills the contact form, nodejs sends us an email using this smtp.
-The mail dns is assigned to Yandex, so you should use yandex smtp address.
-https://yandex.com/support/mail/mail-clients.html
- */
-
 let transporter = nodemailer.createTransport(config.mail.smtpConfig, config.mail.messageDefaults);
 
 // verify connection configuration

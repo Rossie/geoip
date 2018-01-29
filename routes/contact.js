@@ -4,7 +4,6 @@ const mail = require('../services/mail');
 
 router.get('/', function (req, res, next) {
 
-    console.dir(Promise.prototype.finally);
     res.render('contact');
 });
 
@@ -31,9 +30,7 @@ router.post('/', function(req, res, next){
                 errObj: err
             });
             res.redirect('/contact');
-        });
-    
-    // res.render('contact');
+        });    
 });
 
 module.exports = router;
