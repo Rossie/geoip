@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var flash = require('express-flash');
 var template_helpers = require('./middlewares/template_helpers');
 
 var index = require('./routes/index');
@@ -25,6 +27,19 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// session
+var sess = {
+  secret: '976a7962-67bf-4eca-9967-5cca8c53c43f',
+  cookie: { maxAge: 60000 },
+  resave: false,
+  saveUninitialized: true
+}
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1); // trust first proxy
+  sess.cookie.secure = true; // serve secure cookies
+}
+app.use(session(sess));
+app.use(flash());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
