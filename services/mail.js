@@ -13,7 +13,7 @@ transporter.verify(function (error, success) {
 });
 
 var mailFunctions = {
-    sendMail: function(from, subject, txtMsg){
+    sendMail: function (from, subject, txtMsg) {
         return new Promise((resolve, reject) => {
             // https://nodemailer.com/message/
             transporter.sendMail({
