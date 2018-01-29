@@ -1,11 +1,34 @@
 const express = require('express');
 const router = express.Router();
 const mail = require('../services/mail');
+const config = require('../config');
 
 router.get('/', function (req, res, next) {
 
     res.render('contact');
 });
+
+/////////////////////////////
+// Message Guard
+/////////////////////////////
+var msgCount = {};
+router.post('/', function (req, res, next){
+    if (!msgCount[req.ip]) msgCount[req.ip] = 0;
+    if (msgCount[req.ip] >= config.contactus.banCount ) {
+        req.flash('mail_error', {
+            mgs: `Too many messages from your IP, please try again after ${~~(config.contactus.clearTimeout/1000/60)} minutes.`
+        });
+        res.redirect('/contact');
+    }
+    else {
+        next();
+    }
+});
+
+// clear counter interval
+setInterval(() => {
+    msgCount = {};
+}, config.contactus.clearTimeout);
 
 router.post('/', function(req, res, next){
     let input_name = req.body.name;
@@ -19,8 +42,8 @@ router.post('/', function(req, res, next){
         `message: ${input_message}`
     )
         .then(result => {
-            console.log(result);
             req.flash('mail_success', 'Your message has been successfully sent to us, thank you.');
+            msgCount[req.ip]++;
             res.redirect('/contact');
         })
         .catch(err => {

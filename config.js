@@ -30,7 +30,15 @@ var config = {
             from: 'support@ipzen.io',
             to: 'rossie.g@gmail.com'
         }
-    }
+    },
+
+    ///////////////////////////////////
+    // Contact Us
+    ///////////////////////////////////
+    contactus: {
+        banCount: 1, // permits sending message after this count of messages
+        clearTimeout: 60*1*1000 // permits sendig messages for this time of milliseconds
+    },
 };
 
 module.exports = config;
