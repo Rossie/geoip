@@ -16,7 +16,7 @@ router.get('/:ip', function (req, res, next) {
 
     logic.getIpData(ip)
         .then(ipData => {
-            res.render('ip-view', { data: ipData });
+            res.render('ip-view', { data: logic.prepForView(ipData) });
         })
         .catch(error => {
             res.render('ip-view', { data: { error: error } });

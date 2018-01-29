@@ -2,9 +2,9 @@
 
 <script>
   window.viewIp = '<%- data.ip %>';
-  <% if (data.data) { %>
-    window.mapLat = <%- data.data.lat || 'false' %>;
-    window.mapLng = <%- data.data.lon || 'false' %>;
+  <% if (data.lat && data.lon) { %>
+    window.mapLat = <%- data.lat %>;
+    window.mapLng = <%- data.lon %>;
   <% } %>
 </script>
 
@@ -24,7 +24,7 @@
             <div class="card-body">
 
               <%- include('blocks/search', {data: data}) %>
-
+              
               <% if (data.data) { %>
                 <%- include('blocks/ip-data-table', { ipdata: data.data }) %>
               <% } %>

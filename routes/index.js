@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
 
     logic.getIpData(ip)
         .then(ipData => {
-            res.render('index', { data: ipData });
+            res.render('index', { data: logic.prepForView(ipData) });
         })
         .catch(error => {
             res.render('index', { data: { error: error } });

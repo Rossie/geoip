@@ -25,6 +25,11 @@
   color: rgb(255, 255, 255);
 }
 
+/* ip data table */
+.ipdata-table th:first-child {
+  text-align: right;
+}
+
 /* myreq */
 
 .request-table th {

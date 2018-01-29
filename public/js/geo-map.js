@@ -13,7 +13,7 @@
     var map; // map instance
     window.initMap = function () {
         map = new google.maps.Map(document.getElementById('map'), mapInitDefault);
-        if (mapLat && mapLng) {
+        if (window.hasOwnProperty('mapLat') && window.hasOwnProperty('mapLng')) {
             replaceMarker(mapLat, mapLng);
         }
     };

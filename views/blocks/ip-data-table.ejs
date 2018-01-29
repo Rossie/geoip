@@ -1,13 +1,13 @@
-<table class="table mb-0 mt-3">
+<table class="table mb-0 mt-3 ipdata-table">
   <tbody>
-    <% Object.keys(ipdata).forEach(function (key) { %>
-      <% if (ipdata[key]) { %>
+    <% ipdata.forEach(function (item) { %>
+      <% if (item.value) { %>
         <tr>
           <th class="py-1 text-muted">
-            <%= key %>
+            <%= item.key %>
           </th>
           <td class="py-1">
-            <%= ipdata[key] %>
+            <%= item.value %>
           </td>
         <tr>
       <% } %>
