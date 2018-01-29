@@ -3,10 +3,10 @@
     <% ipdata.forEach(function (item) { %>
       <% if (item.value) { %>
         <tr>
-          <th class="py-1 text-muted">
+          <th class="py-1 <%= getStatusCss(item) || 'text-muted' %>">
             <%= item.key %>
           </th>
-          <td class="py-1">
+          <td class="py-1 <%= getStatusCss(item) %>">
             <%= item.value %>
           </td>
         <tr>

@@ -12,6 +12,14 @@ function setup(req, res, next) {
             return req.baseUrl == baseUrl ? 'active' : '';
         }
     };
+
+    res.locals.getStatusCss = function(ipItem) {
+        let cssMap = {
+            statussuccess: 'text-success',
+            statusfail: 'text-danger'
+        };
+        return cssMap[ipItem.key+ipItem.value];
+    }
     
     next();
 }
