@@ -19,7 +19,7 @@ function setup(req, res, next) {
             statusfail: 'text-danger'
         };
         return cssMap[ipItem.key+ipItem.value];
-    }
+    };
     
     next();
 }
