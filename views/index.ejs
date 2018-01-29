@@ -62,11 +62,16 @@
               <h5 class="card-title">
                 <i class="fa fa-fw fa-cog text-muted"></i> API description</h5>
               <div class="card-text">
-                <pre><code><%= config.SITE_NAME %>/api?format=json (just prints the user’s IP)
-<%= config.SITE_NAME %>/api?format=json&geo=true (print detailed geo data of the user’s IP)
-Or, to get the details of another IP:
-<%= config.SITE_NAME %>/api?ip=1.2.3.4&format=json
-<%= config.SITE_NAME %>/api?ip=1.2.3.4&format=json&geo=true</code></pre>
+                <pre><code class='bash'># Prints the user’s IP
+$ curl '<%= config.SITE_NAME %>/api?format=json'
+{"ip":"::ffff:31.46.203.115"}
+
+# Print detailed geo data of the user’s IP
+$ curl '<%= config.SITE_NAME %>/api?format=json&geo=true'
+
+# Or, to get the details of another IP:
+$ curl '<%= config.SITE_NAME %>/api?ip=1.2.3.4&format=json'
+$ curl '<%= config.SITE_NAME %>/api?ip=1.2.3.4&format=json&geo=true'</code></pre>
               </div>
             </div>
           </div>
@@ -90,3 +95,9 @@ Or, to get the details of another IP:
   '<script src="/js/ip-lookup.js"></script>',
   '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOXFJyuHI9JnQyGh-rL4vcEWmra13ldMg&callback=initMap"></script>',
 ]}}); %>
+
+<script>
+  $(function(){
+    hljs.highlightBlock($('.bash')[0]);
+  });
+</script>
