@@ -63,6 +63,11 @@
                   <% } %>
                 </ul>
 
+                <div id="commentError" class="alert alert-danger my-3 subscriber comment-error comment-post-invoked" role="alert" style="display:none;">
+                  <i class="fa fa-exclamation-triangle fa-fw fa-lg" aria-hidden="true"></i> 
+                  {{ error }}
+                </div>
+
                 <form class="mt-3 subscriber comment-post-invoked comment-post" id="commentForm">
                   <h6 class="text-primary">Post New Comment</h6>
                   <div class="form-group">

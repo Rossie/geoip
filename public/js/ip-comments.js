@@ -1,11 +1,8 @@
 $(function () {
     // https://stackoverflow.com/questions/399867/custom-events-in-jquery     
-    
+
     var _ip = window.viewIp;
-    ///////////////////////////////////////////////////
-    // Comments for the IP address
-    ///////////////////////////////////////////////////
-    
+
     $('#btnCommentPost').click(function (evt) {
         var comment = $('#txtComment').val().trim();
         if (!comment) return;
@@ -29,13 +26,11 @@ $(function () {
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error(errorThrown);
+                $('.subscriber.comment-error').trigger('comment.error', [errorThrown]);
             }
         });
     }
 
-    //////////////////////////////
-    // Comment list
-    //////////////////////////////
     $('#commentList')
         .on('comment.post-ok', function (evt, comment) {
             // convert date
@@ -43,15 +38,12 @@ $(function () {
 
             // set up Mustache.js on templates - https://github.com/janl/mustache.js
             var commentTemplate = $('#commentTemplate').html();
-            Mustache.parse(commentTemplate); 
-
+            Mustache.parse(commentTemplate);
             var commentHtml = Mustache.render(commentTemplate, comment);
             $(this).append(commentHtml);
+            $('#commentList li:last-child').hide().slideDown();
         });
 
-    //////////////////////////////
-    // Comment POST form
-    //////////////////////////////
     $('#commentForm')
         .on('comment.post-invoked', function (evt) {
             $('#commentForm textarea, #commentForm button').prop('disabled', true);
@@ -63,4 +55,15 @@ $(function () {
             }
         });
 
+    $('#commentError')
+        .on('comment.post-invoked', function (evt) {
+            $(this).fadeOut('fast');
+        })
+        .on('comment.error', function (evt, error) {
+            var errorTemplate = $(this).html();
+            Mustache.parse(errorTemplate);
+            var errorHtml = Mustache.render(errorTemplate, { error: error });
+            $(this).html(errorHtml).slideDown();
+            $('#commentForm textarea, #commentForm button').prop('disabled', false);
+        });
 }); 

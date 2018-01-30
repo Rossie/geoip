@@ -15,7 +15,7 @@ router.get('/:ip', function (req, res, next) {
             res.json({ result: 'ok', comments: comments });
         })
         .catch(error => {
-            res.json({ result: 'error', message: error });        
+            res.json({ result: 'error', message: error });
         });
 });
 
@@ -27,11 +27,11 @@ router.post('/:ip', function (req, res, next) {
         res.json({ result: 'error', message: 'Invalid parameters.' });
         return;
     }
-    
+
     db.addIpComments(ip, comment)
-    .then(result => {
-        res.json({ result: 'ok', comment: result });
-    });
+        .then(result => {
+            res.json({ result: 'ok', comment: result });
+        });
 });
 
 module.exports = router;
