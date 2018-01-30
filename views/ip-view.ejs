@@ -47,6 +47,12 @@
               <div class="card-text">
 
                 <ul class="list-group subscriber comment-post" id="commentList">
+                  <script id="commentTemplate" type="x-tmpl-mustache">
+                    <li class="list-group-item">
+                      <h6 class="text-muted">{{ post_date }}</h6>
+                      {{ comment }}
+                    </li>
+                  </script>
                   <% if (data.comments) { %>
                     <% data.comments.forEach(function(comment) { %>
                     <li class="list-group-item">
@@ -92,6 +98,7 @@
 <%- include('blocks/footer'); %>
 
 <%- include('footer-html', {data: {lastTags: [
+  '<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>',
   '<script src="/js/geo-map.js"></script>',
   //'<script src="/js/ip-lookup.js"></script>',
   '<script src="/js/ip-comments.js"></script>',
