@@ -15,8 +15,7 @@ router.post('/', function (req, res, next) {
     if (!msgCount[req.ip]) msgCount[req.ip] = 0;
     if (msgCount[req.ip] >= config.contactus.banCount) {
         req.flash('mail_error', {
-            // COMMENT Please put spaces before and after binary operators
-            // COMMENT I told before clearly, in any IDE it is just one keyboard shortcut to format your code.
+            // COMMENT Please put spaces before and after binary operators | My code format function in IDE removes them :(
             mgs: `Too many messages from your IP, please try again after ${~~(config.contactus.clearTimeout / 1000 / 60)} minutes.`
         });
         res.redirect('/contact');
@@ -32,7 +31,6 @@ setInterval(() => {
     msgCount = {};
 }, config.contactus.clearTimeout);
 
-// COMMENT Please put a space after parantheses
 router.post('/', function (req, res, next) {
     let input_name = req.body.name;
     let input_email = req.body.email;
