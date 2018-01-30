@@ -50,6 +50,7 @@ var logic = {
     prepForView: function(ipData) {
         ipData.lat = ipData.data.lat;
         ipData.lon = ipData.data.lon;
+        ipData.status = ipData.data.status;
         let dataArray = logic.objectToArray(ipData.data);
         ipData.data = logic.sortIpQuery(dataArray);
         return ipData;
