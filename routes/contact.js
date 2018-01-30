@@ -25,7 +25,7 @@ router.post('/', function (req, res, next) {
     }
 });
 
-// COMMENT Not ideal, but as an ad-hoc solution it is ok.
+// COMMENT Not ideal, but as an ad-hoc solution it is ok. | What would be the requirements for an ideal solution?
 // clear counter interval
 setInterval(() => {
     msgCount = {};
