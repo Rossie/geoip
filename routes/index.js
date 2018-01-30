@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const ipApi = require('../services/ip-api');
-// COMMENT this db is not used?
-const db = require('../services/database');
 var logic = require('../services/logic');
 
 /* GET home page. */

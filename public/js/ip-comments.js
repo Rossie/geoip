@@ -6,7 +6,6 @@ $(function () {
     // Comments for the IP address
     ///////////////////////////////////////////////////
     $(document).on('iplookup.ipfetched', function (evt, ip, result) {
-        // COMMENT sometimes you use camelCase, sometimes underscore, please use consistent naming convention
         $('#commentsTitleIp').html(ip);
         _ip = ip;
         fetchComments();
