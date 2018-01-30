@@ -11,18 +11,6 @@ body {
 
 /* Bootstrap overrides */
 
-.navbar a {
-  color: #ffd753 !important;  
-}
-
-.navbar a:hover {
-  color: rgb(255, 255, 255) !important;
-}
-
-.navbar-nav > .active > a {
-  color: rgb(255, 255, 255) !important;  
-}
-
 .footer .bg-secondary,
 .footer .bg-secondary a {
   color: rgb(216, 216, 216);
