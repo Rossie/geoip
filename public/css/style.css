@@ -9,6 +9,14 @@ body {
   height: 400px;
 }
 
+/* Custom */
+.navbar-brand {
+  font-size: 1.4em;
+}
+.navbar-brand .smaller {
+  font-size: 0.8em;
+}
+
 /* Bootstrap overrides */
 
 .footer .bg-secondary,
@@ -20,6 +28,7 @@ body {
 }
 
 /* ip data table */
+
 .ipdata-table th:first-child {
   text-align: right;
 }
