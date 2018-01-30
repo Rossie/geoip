@@ -17,6 +17,14 @@ body {
   font-size: 0.8em;
 }
 
+.text-col-1 {
+  color: #B66ABE 
+}
+
+.text-col-2 {
+  color: #C0D637
+}
+
 /* Bootstrap overrides */
 
 .footer .bg-secondary,
