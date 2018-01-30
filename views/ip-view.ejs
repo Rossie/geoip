@@ -42,13 +42,8 @@
         <% if (data.status && data.status == 'success') { %>
         <div class="col-md-12" id="commentPanel">
           <div class="card mb-4 box-shadow">
+            <h5 class="card-header text-primary"><i class="fa fa-fw fa-comment text-secondary"></i> Comments on IP: <%= data.ip %></h5>
             <div class="card-body">
-
-              <h5 class="card-title">
-                <i class="fa fa-fw fa-comment text-muted"></i> Comments on IP:
-                <span id="commentsTitleIp"></span>
-              </h5>
-
               <div class="card-text">
 
                 <ul class="list-group subscriber comment-post" id="commentList">
@@ -56,14 +51,14 @@
                     <% data.comments.forEach(function(comment) { %>
                     <li class="list-group-item">
                       <h6 class="text-muted"><%= comment.post_date %></h6>
-                      <p><%= comment.comment %></p>
+                      <%= comment.comment %>
                     </li>
                     <% }) %>
                   <% } %>
                 </ul>
 
                 <form class="mt-3 subscriber comment-post-invoked comment-post" id="commentForm">
-                  <h6>Post New Comment</h6>
+                  <h6 class="text-primary">Post New Comment</h6>
                   <div class="form-group">
                     <textarea class="form-control" id="txtComment" rows="3"></textarea>
                   </div>
