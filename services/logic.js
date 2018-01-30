@@ -8,19 +8,18 @@ var logic = {
                 .then(dbresult => {
                     if (dbresult) {
                         resolve(dbresult);
-                    }
-                    else {
+                    } else {
                         return ipApi.lookup('json', ip);
                     }
                 })
                 .then(ipLookupResultStr => {
-                    if (ipLookupResultStr == undefined) { return; }
-
-                    let ipData = JSON.parse(ipLookupResultStr);
-                    if (ipData.status == "success") {
-                        return db.addIp(ip, ipData); // save ip address
+                    if (ipLookupResultStr === undefined) {
+                        return;
                     }
-                    else {
+                    let ipData = JSON.parse(ipLookupResultStr);
+                    if (ipData.status === "success") {
+                        return db.addIp(ip, ipData); // save ip address
+                    } else {
                         resolve({ ip: ip, data: ipData });
                     }
                 })

@@ -9,7 +9,7 @@ const config = require('../config');
 var _db;
 var _Ip;
 var _Comments;
-orm.connectAsync(`mysql://${config.username}:${config.password}@${config.host}/${config.dbname}?debug=${config.debug}`)
+orm.connectAsync(`mysql://${config.db.username}:${config.db.password}@${config.db.host}/${config.db.dbname}?debug=${config.db.debug}`)
     .then(db => {
         _db = db;
 

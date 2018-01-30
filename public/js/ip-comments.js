@@ -6,9 +6,9 @@ $(function () {
     // Comments for the IP address
     ///////////////////////////////////////////////////
     $(document).on('iplookup.ipfetched', function (evt, ip, result) {
+        // COMMENT sometimes you use camelCase, sometimes underscore, please use consistent naming convention
         $('#comments_title_ip').html(ip);
         _ip = ip;
-
         fetchComments();
     });
 
@@ -34,7 +34,6 @@ $(function () {
     $('#btnCommentPost').click(function (evt) {
         var comment = $('#txtComment').val().trim();
         if (!comment) return;
-
         postComment(comment);
     });
 
@@ -46,7 +45,7 @@ $(function () {
             data: { comment: comment },
             url: '/comment-api/' + _ip,
             success: function (result) {
-                if (result.result == "ok") {
+                if (result.result === "ok") {
                     $('.subscriber.comment-post').trigger('comment.post', [result.comment]);
                 }
                 else {
@@ -69,6 +68,7 @@ $(function () {
             var qCommentList = $(this);
             qCommentList.empty(); // remove all contents
 
+            // COMMENT please use templating (e.g. mustache.js), don't put HTML inside JS code
             result.forEach(function (comment) {
                 qCommentList.append(
                     '<li class="list-group-item">' +

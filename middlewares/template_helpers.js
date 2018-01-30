@@ -1,4 +1,3 @@
-
 function setup(req, res, next) {
     /**
      * Setting helper function to check wether the navigation item is active or not
@@ -9,7 +8,7 @@ function setup(req, res, next) {
             return baseUrl.indexOf(req.baseUrl) >= 0 ? 'active' : '';
         }
         else {
-            return req.baseUrl == baseUrl ? 'active' : '';
+            return req.baseUrl === baseUrl ? 'active' : '';
         }
     };
 

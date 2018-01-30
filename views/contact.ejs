@@ -1,3 +1,5 @@
+<!--COMMENT This file is not formatted properly, please again use your IDE to format.-->
+
 <%- include('header-html'); %>
 
   <%- include('blocks/navbar'); %>
@@ -13,7 +15,7 @@
               <div class="card mb-4 box-shadow">
                 <div class="card-body">
                   <h5 class="card-title"><i class="fa fa-fw fa-handshake-o text-muted"></i> Contact Us</h5>
-                  
+
                   <% if (messages.mail_success) { %>
                     <div class="alert alert-success" role="alert">
                       <i class="fa fa-thumbs-o-up fa-fw fa-2x" aria-hidden="true"></i> <%= messages.mail_success %>
@@ -25,7 +27,7 @@
                       <pre><%= JSON.stringify(messages.mail_error[0].errObj, null, 2) %></pre>
                     </div>
                   <% } %>
-                  
+
                   <p class="card-text">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dignissim arcu tincidunt libero tincidunt malesuada. Integer
                     lacinia nunc id malesuada pellentesque. Suspendisse potenti. Vivamus dui metus, venenatis id tincidunt
@@ -42,7 +44,6 @@
                         Thanks for filling out the form!
                       </div>
 
-                      
                       <form class="mbr-form form-active" action="/contact" method="post">
                         <input type="hidden" data-form-email="true" value="zdGVBcNRThcdWUUfI+3PsLnnLtHc8JIdEhub3sFJZu3mJPkE6oxv5FmU79KVvaLjKSmEfsOBbKYj1Cps8hm2o1hmKtkhiOdHe4oDrPZiHdR0Yvomv7W9ZOtj6J4piMeE">
                         <div class="row row-sm-offset">
@@ -75,7 +76,6 @@
                         </div>
                       </form>
 
-                      
                     </div>
                   </div><!-- .row -->
                   <% } %>

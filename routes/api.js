@@ -8,23 +8,23 @@ const db = require('../services/database');
 router.get('/', function (req, res, next) {
     // get parameters and defaults
     var format = req.query.format || 'json'; // default json
-    if (format == 'text') format = 'csv'; // translate text to csv for ip-api
+    if (format === 'text') format = 'csv'; // translate text to csv for ip-api
     const ip = req.query.ip || req.ip; // default own ip
-    var geo = req.query.geo && req.query.geo != '0' && req.query.geo != 'false'; // default geo is false
+    var geo = req.query.geo && req.query.geo !== '0' && req.query.geo !== 'false'; // default geo is false
 
-    if (!geo && ip == req.ip && format == 'json') {
+    if (!geo && ip === req.ip && format === 'json') {
         res.json({ ip: req.ip });
     }
     else {
         ipApi.lookup(format, ip)
             .then(ipString => {
-                if (format == 'csv') format = 'text'; // translate csv back to text
+                if (format === 'csv') format = 'text'; // translate csv back to text
 
                 new Promise((resolve, reject) => {
                     var ipJson;
 
                     // if not json format was requested, get the json format
-                    if (format != 'json') {
+                    if (format !== 'json') {
                         ipApi.lookup('json', ip)
                             .then(ipJsonString => {
                                 ipJson = JSON.parse(ipJsonString);
@@ -37,11 +37,11 @@ router.get('/', function (req, res, next) {
                     }
                 })
                     .then((ipJson) => {
-                        if (ipJson.status != "success") {
+                        if (ipJson.status !== "success") {
                             res.status(400); // set Bad Request
                         }
 
-                        if (!geo && ipJson.status == "success") {
+                        if (!geo && ipJson.status === "success") {
                             switch (format) {
                                 case 'json':
                                     ipString = `{"ip": ${ipJson.query}}`;
@@ -60,12 +60,12 @@ router.get('/', function (req, res, next) {
 
                         res.type(format).send(ipString); // send result data with format  <--- SEND
 
-                        if (ipJson.status == "success") {
+                        if (ipJson.status === "success") {
                             return db.addIp(ip, ipJson); // save ip data to DB
                         }
                     })
                     .catch(error => {
-                        if (error.code != 'ER_DUP_ENTRY') { // duplicaton is ok for IP addresses
+                        if (error.code !== 'ER_DUP_ENTRY') { // duplicaton is ok for IP addresses
                             console.error(error);
                             res.status(500).json({ result: 'error', message: error });
                         }

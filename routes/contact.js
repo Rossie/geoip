@@ -4,7 +4,6 @@ const mail = require('../services/mail');
 const config = require('../config');
 
 router.get('/', function (req, res, next) {
-
     res.render('contact');
 });
 
@@ -12,11 +11,13 @@ router.get('/', function (req, res, next) {
 // Message Guard
 /////////////////////////////
 var msgCount = {};
-router.post('/', function (req, res, next){
+router.post('/', function (req, res, next) {
     if (!msgCount[req.ip]) msgCount[req.ip] = 0;
-    if (msgCount[req.ip] >= config.contactus.banCount ) {
+    if (msgCount[req.ip] >= config.contactus.banCount) {
         req.flash('mail_error', {
-            mgs: `Too many messages from your IP, please try again after ${~~(config.contactus.clearTimeout/1000/60)} minutes.`
+            // COMMENT Please put spaces before and after binary operators
+            // COMMENT I told before clearly, in any IDE it is just one keyboard shortcut to format your code.
+            mgs: `Too many messages from your IP, please try again after ${~~(config.contactus.clearTimeout / 1000 / 60)} minutes.`
         });
         res.redirect('/contact');
     }
@@ -25,20 +26,22 @@ router.post('/', function (req, res, next){
     }
 });
 
+// COMMENT Not ideal, but as an ad-hoc solution it is ok.
 // clear counter interval
 setInterval(() => {
     msgCount = {};
 }, config.contactus.clearTimeout);
 
-router.post('/', function(req, res, next){
+// COMMENT Please put a space after parantheses
+router.post('/', function (req, res, next) {
     let input_name = req.body.name;
     let input_email = req.body.email;
     let input_phone = req.body.phone;
     let input_message = req.body.message;
 
-    mail.sendMail(input_email, '[ipzen.io] User message', 
-        `name: ${input_name} <${input_email}>\n`+
-        `phone: ${input_phone}\n`+
+    mail.sendMail(input_email, '[ipzen.io] User message',
+        `name: ${input_name} <${input_email}>\n` +
+        `phone: ${input_phone}\n` +
         `message: ${input_message}`
     )
         .then(result => {
@@ -53,7 +56,7 @@ router.post('/', function(req, res, next){
                 errObj: err
             });
             res.redirect('/contact');
-        });    
+        });
 });
 
 module.exports = router;

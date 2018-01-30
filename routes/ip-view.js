@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+// COMMENT this db is not used?
 var db = require('../services/database');
 var logic = require('../services/logic');
 

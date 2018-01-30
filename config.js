@@ -5,11 +5,13 @@ var config = {
     ///////////////////////////////////
     // Database credentials, settings
     ///////////////////////////////////
-    username: 'ipweb',
-    password: '1234',
-    host: 'localhost',
-    dbname: 'ip_geo',
-    debug: 'true',
+    db : {
+        username: 'ipweb',
+        password: '1234',
+        host: 'localhost',
+        dbname: 'ip_geo',
+        debug: 'true'
+    },
 
     ///////////////////////////////////
     // Mail
