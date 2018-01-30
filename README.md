@@ -38,3 +38,7 @@ pm2
 ORM doesn't create index so have to add it manually after tables are created:
     mysql> ALTER TABLE `comments` ADD INDEX `ip_id` (`ip_id` ASC);
 
+
+## Outer sources:
+
+CSS: https://bootswatch.com/pulse/
