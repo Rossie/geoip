@@ -7,7 +7,7 @@ $(function () {
     ///////////////////////////////////////////////////
     $(document).on('iplookup.ipfetched', function (evt, ip, result) {
         // COMMENT sometimes you use camelCase, sometimes underscore, please use consistent naming convention
-        $('#comments_title_ip').html(ip);
+        $('#commentsTitleIp').html(ip);
         _ip = ip;
         fetchComments();
     });
@@ -62,7 +62,7 @@ $(function () {
     // Comment list
     //////////////////////////////
     $('#commentList').on('comment.invoked', function (evt) {
-        $('#comment_panel').fadeOut('fast');
+        $('#commentPanel').fadeOut('fast');
     })
         .on('comment.data', function (evt, result) {
             var qCommentList = $(this);
@@ -78,7 +78,7 @@ $(function () {
                 );
             });
 
-            $('#comment_panel').delay(0).slideDown();
+            $('#commentPanel').delay(0).slideDown();
         })
         .on('comment.post', function (evt, comment) {
             // console.log('comment.post', result);
