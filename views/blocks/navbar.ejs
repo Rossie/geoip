@@ -12,10 +12,13 @@
   <div class="collapse navbar-collapse" id="navbarsExample04">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item <%= isNavItemActive(['','/','/ips']) %>">
-        <a class="nav-link" href="/"><i class="fa fa-map-marker fa-lg fa-fw" aria-hidden="true"></i>IP Geolocation</a>
+        <a class="nav-link" href="/"><i class="fa fa-map-marker fa-lg fa-fw" aria-hidden="true"></i> IP Geolocation</a>
       </li>
       <li class="nav-item <%= isNavItemActive('/myreq') %>">
-        <a class="nav-link" href="/myreq"><i class="fa fa-map-signs fa-lg fa-fw" aria-hidden="true"></i>My Request Headers</a>
+        <a class="nav-link" href="/myreq"><i class="fa fa-map-signs fa-lg fa-fw" aria-hidden="true"></i> My Request Headers</a>
+      </li>
+      <li class="nav-item <%= isNavItemActive('/allip') %>">
+        <a class="nav-link" href="/allip"><i class="fa fa-list-ol fa-lg fa-fw" aria-hidden="true"></i> All IP addresses</a>
       </li>
     </ul>
   </div>

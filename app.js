@@ -16,6 +16,7 @@ var contact = require('./routes/contact');
 var about = require('./routes/about');
 var privacy = require('./routes/privacy');
 var myreq = require('./routes/myreq');
+var allip = require('./routes/allip');
 var config = require('./config');
 
 var app = express();
@@ -55,6 +56,7 @@ app.use('/contact', contact);
 app.use('/about', about);
 app.use('/privacy', privacy);
 app.use('/myreq', myreq);
+app.use('/allip', allip);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
