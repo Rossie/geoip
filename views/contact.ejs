@@ -1,101 +1,96 @@
-<!--COMMENT This file is not formatted properly, please again use your IDE to format.-->
-
 <%- include('header-html'); %>
 
-  <%- include('blocks/navbar'); %>
+<%- include('blocks/navbar'); %>
 
-    <main role="main">
+<main role="main">
 
-      <div class="ipgeo py-5 bg-light">
-        <div class="container">
+  <div class="ipgeo py-5 bg-light">
+    <div class="container">
 
-          <div class="row">
+      <div class="row">
 
-            <div class="col-md-8 offset-2">
-              <div class="card mb-4 box-shadow">
-                <h5 class="card-header text-primary"><i class="fa fa-fw fa-handshake-o text-secondary"></i> Contact Us</h5>
-                <div class="card-body">
-                  <% if (messages.mail_success) { %>
-                    <div class="alert alert-success" role="alert">
-                      <i class="fa fa-thumbs-o-up fa-fw fa-2x" aria-hidden="true"></i> <%= messages.mail_success %>
-                    </div>
-                  <% } %>
-                  <% if (messages.mail_error) { %>
-                    <div class="alert alert-danger" role="alert">
-                      <i class="fa fa-exclamation-triangle fa-fw fa-2x" aria-hidden="true"></i> <%= messages.mail_error[0].mgs %>
-                      <pre><%= JSON.stringify(messages.mail_error[0].errObj, null, 2) %></pre>
-                    </div>
-                  <% } %>
+        <div class="col-md-8 offset-2">
+          <div class="card mb-4 box-shadow">
+            <h5 class="card-header text-primary"><i class="fa fa-fw fa-handshake-o text-secondary"></i> Contact Us</h5>
+            <div class="card-body">
+              <% if (messages.mail_success) { %>
+                <div class="alert alert-success" role="alert">
+                  <i class="fa fa-thumbs-o-up fa-fw fa-2x" aria-hidden="true"></i> <%= messages.mail_success %>
+                </div>
+              <% } %>
+              <% if (messages.mail_error) { %>
+                <div class="alert alert-danger" role="alert">
+                  <i class="fa fa-exclamation-triangle fa-fw fa-2x" aria-hidden="true"></i> <%= messages.mail_error[0].mgs %>
+                  <pre><%= JSON.stringify(messages.mail_error[0].errObj, null, 2) %></pre>
+                </div>
+              <% } %>
 
-                  <p class="card-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dignissim arcu tincidunt libero tincidunt malesuada. Integer
-                    lacinia nunc id malesuada pellentesque. Suspendisse potenti. Vivamus dui metus, venenatis id tincidunt
-                    quis, venenatis sit amet mi. Nam euismod ut lorem vel malesuada. Etiam vulputate dapibus arcu et semper.
-                    Quisque vulputate pellentesque blandit. Maecenas eleifend ut justo ut sollicitudin. Orci varius natoque
-                    penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+              <p class="card-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dignissim arcu tincidunt libero tincidunt malesuada. Integer
+                lacinia nunc id malesuada pellentesque. Suspendisse potenti. Vivamus dui metus, venenatis id tincidunt
+                quis, venenatis sit amet mi. Nam euismod ut lorem vel malesuada. Etiam vulputate dapibus arcu et semper.
+                Quisque vulputate pellentesque blandit. Maecenas eleifend ut justo ut sollicitudin. Orci varius natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+              </p>
 
-                  </p>
+              <% if (!messages.mail_success) { %>
+              <div class="row justify-content-center">
+                <div class="media-container-column col-lg-10 py-3 contactus-panel" data-form-type="formoid">
+                  <div data-form-alert="" hidden="">
+                    Thanks for filling out the form!
+                  </div>
 
-                  <% if (!messages.mail_success) { %>
-                  <div class="row justify-content-center">
-                    <div class="media-container-column col-lg-10 py-3 contactus-panel" data-form-type="formoid">
-                      <div data-form-alert="" hidden="">
-                        Thanks for filling out the form!
+                  <form class="mbr-form form-active" action="/contact" method="post">
+                    <input type="hidden" data-form-email="true" value="zdGVBcNRThcdWUUfI+3PsLnnLtHc8JIdEhub3sFJZu3mJPkE6oxv5FmU79KVvaLjKSmEfsOBbKYj1Cps8hm2o1hmKtkhiOdHe4oDrPZiHdR0Yvomv7W9ZOtj6J4piMeE">
+                    <div class="row row-sm-offset">
+                      <div class="col-md-4 multi-horizontal" data-for="name">
+                        <div class="form-group">
+                          <label class="form-control-label mbr-fonts-style display-7 text-primary" for="name-form1-2w">Name</label>
+                          <input type="text" class="form-control" name="name" data-form-field="Name" required="" id="name-form1-2w">
+                        </div>
                       </div>
-
-                      <form class="mbr-form form-active" action="/contact" method="post">
-                        <input type="hidden" data-form-email="true" value="zdGVBcNRThcdWUUfI+3PsLnnLtHc8JIdEhub3sFJZu3mJPkE6oxv5FmU79KVvaLjKSmEfsOBbKYj1Cps8hm2o1hmKtkhiOdHe4oDrPZiHdR0Yvomv7W9ZOtj6J4piMeE">
-                        <div class="row row-sm-offset">
-                          <div class="col-md-4 multi-horizontal" data-for="name">
-                            <div class="form-group">
-                              <label class="form-control-label mbr-fonts-style display-7 text-primary" for="name-form1-2w">Name</label>
-                              <input type="text" class="form-control" name="name" data-form-field="Name" required="" id="name-form1-2w">
-                            </div>
-                          </div>
-                          <div class="col-md-4 multi-horizontal" data-for="email">
-                            <div class="form-group">
-                              <label class="form-control-label mbr-fonts-style display-7 text-primary" for="email-form1-2w">Email</label>
-                              <input type="email" class="form-control" name="email" data-form-field="Email" required="" id="email-form1-2w">
-                            </div>
-                          </div>
-                          <div class="col-md-4 multi-horizontal" data-for="phone">
-                            <div class="form-group">
-                              <label class="form-control-label mbr-fonts-style display-7 text-primary" for="phone-form1-2w">Phone</label>
-                              <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-2w">
-                            </div>
-                          </div>
+                      <div class="col-md-4 multi-horizontal" data-for="email">
+                        <div class="form-group">
+                          <label class="form-control-label mbr-fonts-style display-7 text-primary" for="email-form1-2w">Email</label>
+                          <input type="email" class="form-control" name="email" data-form-field="Email" required="" id="email-form1-2w">
                         </div>
-                        <div class="form-group" data-for="message">
-                          <label class="form-control-label mbr-fonts-style display-7 text-primary" for="message-form1-2w">Message</label>
-                          <textarea type="text" class="form-control" name="message" rows="7" data-form-field="Message" id="message-form1-2w"></textarea>
+                      </div>
+                      <div class="col-md-4 multi-horizontal" data-for="phone">
+                        <div class="form-group">
+                          <label class="form-control-label mbr-fonts-style display-7 text-primary" for="phone-form1-2w">Phone</label>
+                          <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-2w">
                         </div>
-
-                        <div class="input-group-btn text-center">
-                          <button href="" type="submit" class="btn btn-primary btn-form display-4"><i class="fa fa-fw fa-paper-plane"></i> SEND FORM</button>
-                        </div>
-                      </form>
-
+                      </div>
                     </div>
-                  </div><!-- .row -->
-                  <% } %>
+                    <div class="form-group" data-for="message">
+                      <label class="form-control-label mbr-fonts-style display-7 text-primary" for="message-form1-2w">Message</label>
+                      <textarea type="text" class="form-control" name="message" rows="7" data-form-field="Message" id="message-form1-2w"></textarea>
+                    </div>
+
+                    <div class="input-group-btn text-center">
+                      <button href="" type="submit" class="btn btn-primary btn-form display-4"><i class="fa fa-fw fa-paper-plane"></i> SEND FORM</button>
+                    </div>
+                  </form>
 
                 </div>
-              </div>
+              </div><!-- .row -->
+              <% } %>
+
             </div>
-            <!-- #apiPanel -->
-
           </div>
-          <!-- .row -->
-
         </div>
-        <!-- .container -->
+        <!-- #apiPanel -->
+
       </div>
-      <!-- .ipgeo -->
+      <!-- .row -->
 
-    </main>
+    </div>
+    <!-- .container -->
+  </div>
+  <!-- .ipgeo -->
 
-    <%- include('blocks/footer'); %>
-      <%#
-    #%>
+</main>
 
-        <%- include('footer-html', {data: {}}); %>
+<%- include('blocks/footer'); %>
+
+<%- include('footer-html', {data: {}}); %>
