@@ -41,35 +41,26 @@
           <div class="card mb-4 box-shadow">
             <div id="map" class="subscriber ipfetched"></div>
           </div>
-        </div>
 
-        <div class="col-lg-7 offset-lg-5" id="apiPanel">
-            <div class="card mb-4 box-shadow">
-              <h5 class="card-header text-primary"><i class="fa fa-fw fa-cog text-secondary"></i> API description</h5>
-              <div class="card-body">
-                <div class="card-text">
-                  <pre><code class='bash'># Prints the user’s IP
-  $ curl '<%= config.SITE_NAME %>/api?format=json'
-  {"ip":"::ffff:31.46.203.115"}
-  
-  # Print detailed geo data of the user’s IP
-  $ curl '<%= config.SITE_NAME %>/api?format=json&geo=true'
-  
-  # Or, to get the details of another IP:
-  $ curl '<%= config.SITE_NAME %>/api?ip=1.2.3.4&format=json'
-  $ curl '<%= config.SITE_NAME %>/api?ip=1.2.3.4&format=json&geo=true'</code></pre>
-                </div>
+          <div class="card mb-4 box-shadow">
+            <h5 class="card-header text-primary"><i class="fa fa-fw fa-cog text-secondary"></i> API description</h5>
+            <div class="card-body">
+              <div class="card-text">
+                <pre><code class='bash'># Prints the user’s IP
+$ curl '<%= config.SITE_NAME %>/api?format=json'
+{"ip":"::ffff:31.46.203.115"}
+
+# Print detailed geo data of the user’s IP
+$ curl '<%= config.SITE_NAME %>/api?format=json&geo=true'
+
+# Or, to get the details of another IP:
+$ curl '<%= config.SITE_NAME %>/api?ip=1.2.3.4&format=json'
+$ curl '<%= config.SITE_NAME %>/api?ip=1.2.3.4&format=json&geo=true'</code></pre>
               </div>
             </div>
           </div>
-          <!-- #apiPanel -->
-
-      </div>
-      <!-- .row -->
-
-      <div class="row">
-
-        
+  
+        </div>
 
       </div>
       <!-- .row -->
