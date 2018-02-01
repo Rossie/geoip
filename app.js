@@ -20,6 +20,7 @@ var allip = require('./routes/allip');
 var config = require('./config');
 
 var app = express();
+app.enable('strict routing');
 app.locals.config = config; // makes accessible in templates
 
 // view engine setup
@@ -28,13 +29,14 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// TODO: move this into config
 // session
 var sess = {
   secret: '976a7962-67bf-4eca-9967-5cca8c53c43f',
   cookie: { maxAge: 60000 },
   resave: false,
   saveUninitialized: true
-}
+};
 if (app.get('env') === 'production') {
   app.set('trust proxy', 1); // trust first proxy
   sess.cookie.secure = true; // serve secure cookies
