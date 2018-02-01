@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var flash = require('express-flash');
 var template_helpers = require('./middlewares/template_helpers');
+var log = require('./services/log');
 
 var index = require('./routes/index');
 var ipView = require('./routes/ip-view');
