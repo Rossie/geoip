@@ -21,7 +21,7 @@ $ mysql_secure_installation
 
 Set up user
 ````sh
-$ mysql -uroot -p1234
+$ mysql -u<user> -p<password>
 ````
 ````sql
 CREATE USER 'ipweb'@'localhost' IDENTIFIED BY '1234';
