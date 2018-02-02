@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
+/* 
+https://i.imgur.com/vnUeVVm.png
+http://paletton.com/#uid=74q0u0knIrFejDpjuuKrznsuSiD 
+*/
+
 body {
   font-family: 'Ubuntu', sans-serif;
 }
@@ -18,11 +23,20 @@ body {
 }
 
 .text-col-1 {
-  color: #B66ABE 
+  color: #A0B619 
 }
 
 .text-col-2 {
-  color: #C0D637
+  color: #B66ABE
+}
+
+.bg-navbar {
+  background-color: #EEE5FB;
+}
+
+/* Logo */
+.navbar-brand .logo-text {
+  margin-top: -6px;
 }
 
 /* Bootstrap overrides */
