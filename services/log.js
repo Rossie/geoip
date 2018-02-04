@@ -1,4 +1,4 @@
-var db = require('./mail');
+var mail = require('./mail');
 var config = require('../config');
 
 var oldError = console.error;
@@ -7,7 +7,7 @@ function ipzenError(message, ...params) {
     oldError(message, ...params);
     // send parameters and stack trace by mail
     var msg = [message, ...params].join('\n') + '\n' + getStackTrace();
-    db.sendMail('', `[${config.SITE_NAME}][ERROR] Error happened`, msg);
+    mail.sendMail('', `[${config.SITE_NAME}][ERROR] Error happened`, msg);
 }
 // replace original error with mine
 console.error = ipzenError;
